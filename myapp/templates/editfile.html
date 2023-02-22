@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+   <label>Product name</label>
+  <input type="text" name="prdctname" value="{{a.prdctname}}"><br>
+    <label>Product price</label>
+    <input type="number" name="prdctprice" value="{{a.prdctprice}}"><br>
+    <img src="{% static im %}" height="200px" width="200px">
+  <label>Upload image</label>
+      <input type="file" name="imgfile"><br>
+  <button type="submit">update</button>
+</form>
+</body>
+</html>
