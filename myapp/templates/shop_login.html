@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <style>
@@ -22,9 +23,9 @@
       }
 
       form {
-        background-color: rgb(210, 42, 198);
+        background-color:transparent ;
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(8, 8, 8, 0.1);
+        box-shadow: 0 5px 15px black;
         padding: 30px;
         width: 400px;
         transition: all 0.4s ease-in-out;
@@ -46,25 +47,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-image: url({% static 'registrebckgroundimg.jpg' %});background-size: 100%;">
 <div class="form-container">
 
       <form method="post" action="#">{% csrf_token %}
 
         <table>
-          <caption style="text-align: center; margin-left: 70px;"><h1>Sign Up</h1></caption>
+          <caption style="text-align: center; margin-left: 70px;font-family: cursive;"><h1>Sign Up</h1></caption>
 
         <tr>
         <div class="form-group">
-          <th><label >Dealer Name:</label></th>
-         <td> <input type="text" name="name" required /></td>
+          <th><label style="font-family: cursive;" >Dealer Name:</label></th>
+         <td> <input style="background-color:transparent;border-color:white;color:white;font-family:cursive;" type="text" name="name" required /></td>
         </div>
       </tr>
 
         <tr>
         <div class="form-group">
-          <th><label >Password:</label></th>
-         <td><input type="password" name="password" required /></td>
+          <th><label style="font-family: cursive;">Password:</label></th>
+         <td><input style="background-color:transparent;border-color:white;color:white;font-family:cursive;" type="password" name="password" required /></td>
         </div>
         </tr>
 
