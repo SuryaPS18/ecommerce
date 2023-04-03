@@ -55,8 +55,8 @@ class buy(models.Model):
     quantity=models.IntegerField()
 class customercard(models.Model):
     cardname=models.CharField(max_length=30)
-    cardnumber=models.IntegerField()
-    cardexpiry=models.DateTimeField()
-    code=models.IntegerField()
+    cardnumber=models.CharField(max_length=30)
+    cardexpiry=models.CharField(max_length=30)
+    code=models.CharField(max_length=30)
 
 

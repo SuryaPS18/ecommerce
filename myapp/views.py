@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from newproject.settings import EMAIL_HOST_USER
@@ -81,8 +83,8 @@ def imgupload(request):
 #     return render(request,'login.html')
 # def userlogin(request):
 #     return render(request,'userlogin.html')
-def homepage(request):
-    return render(request,'homepage.html')
+# def homepage(request):
+#     return render(request,'homepage.html')
 
 def index(request):
     return render(request,'indexpage.html')
@@ -106,7 +108,7 @@ def reg(request):
                 return HttpResponse("password doesn't match")
         else:
             return HttpResponse("fail")
-    return render(request,'registration.html')
+    return render(request,'shop_register.html')
 def log(request):
     if request.method=='POST':
         a=loginform(request.POST)
@@ -119,31 +121,31 @@ def log(request):
                     return redirect(pfile)
             else:
                 return HttpResponse("login Failed")
-    return render(request,'logination.html')
+    return render(request,'shop_login.html')
 
 
 
 def pfile(request):
     return render(request,'profile.html')
-def upload(request):
-    return render(request,'fileupload.html')
-def display(request):
-    a = ufilemodel.objects.all()
-    image = []
-    name = []
-    price = []
-    id = []
-    for i in a:
-        id1 = i.id
-        id.append(id1)
-        im = i.imgfile
-        image.append(str(im).split('/')[-1])
-        nm = i.prdctname
-        name.append(nm)
-        pr = i.prdctprice
-        price.append(pr)
-    mylist = zip(image, name, price, id)
-    return render(request, 'filedisplay.html', {'mylist': mylist})
+# def upload(request):
+#     return render(request,'fileupload.html')
+# def display(request):
+#     a = ufilemodel.objects.all()
+#     image = []
+#     name = []
+#     price = []
+#     id = []
+#     for i in a:
+#         id1 = i.id
+#         id.append(id1)
+#         im = i.imgfile
+#         image.append(str(im).split('/')[-1])
+#         nm = i.prdctname
+#         name.append(nm)
+#         pr = i.prdctprice
+#         price.append(pr)
+#     mylist = zip(image, name, price, id)
+#     return render(request, 'filedisplay.html', {'mylist': mylist})
 def file(request):
     if request.method=='POST':
         a=ufileform(request.POST,request.FILES)
@@ -181,6 +183,16 @@ def productdelete(request,id):
 def editproduct(request,id):
     a=ufilemodel.objects.get(id=id)
     im=str(a.imgfile).split('/')[-1]
+    if request.method=='POST':
+        if len(request.FILES):
+            if len(a.imgfile)>0:
+                os.remove(a.imgfile.path)
+            a.imgfile=request.FILES['imgfile']
+        a.prdctname=request.POST.get('prdctname')
+        a.prdctprice=request.POST.get("prdctprice")
+        a.save()
+        return redirect(dfile)
+
     return render(request,'editfile.html',{'a':a,'im':im})
 def regis(request):
     if request.method=='POST':
@@ -304,10 +316,15 @@ def cartdisplay(request):
 
 def whis1(request,id):
     a = ufilemodel.objects.get(id=id)
+    if whislist.objects.filter(prdctname=a.prdctname):
+        messages.success(request, 'already added')
+        return redirect(wish_al_ready)
     b = whislist(prdctname=a.prdctname, prdctprice=a.prdctprice, imgfile=a.imgfile)
     b.save()
     # return HttpResponse('added')
     return redirect(whislistdis)
+def wish_al_ready(request):
+    return render(request,"wish_already_added.html")
 
 
 
@@ -333,9 +350,14 @@ def whislistdis(request):
 
 def whiscart(request,id):
     a=whislist.objects.get(id=id)
+    if cart.objects.filter(prdctname=a.prdctname):
+        messages.success(request, 'already added')
+        return redirect(wishcart_al_ready)
     b=cart(prdctname=a.prdctname,prdctprice=a.prdctprice,imgfile=a.imgfile)
     b.save()
     return redirect(whislistdis)
+def wishcart_al_ready(request):
+    return render(request,"wish_cart_already_added.html")
 def whish_del(request,id):
     a=whislist.objects.get(id=id)
     a.delete()
@@ -370,5 +392,5 @@ def card_pay(request):
         user_obj.save()
         today=datetime.date.today()
         today+=timedelta(days=10)
-        return render(request,"success.html")
+        return render(request,"success.html",{'date':today})
     return render(request,'card_payment.html')

@@ -1,18 +1,88 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        .container{
+         background-color: transparent;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px black;
+        padding: 30px;
+        width: 500px;
+        height:300px;
+
+        }
+
+
+    </style>
 </head>
-<body>
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
-  <label>Product name</label>
-  <input type="text" name="prdctname"><br>
-    <label>Product price</label>
-    <input type="number" name="prdctprice"><br>
-  <label>Upload image</label>
-  <input type="file" name="imgfile"><br>
-  <input type="submit">
+<body style="background-image: url({% static 'uploadbg.jpg' %});background-size: 100%;">
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid" style="background-color:transparent;">
+          <a class="navbar-brand" href="#" style="color:white; font-family: cursive; font-size: 30px;padding: 40px;">FoodStore</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#" style="color:white;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color:white;">Menu</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                  Register
+                </a>
+               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:transparent;">
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/myapp/reg/" target="_blank" style="color:black;">Shop Register</a></li>
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/myapp/user/" target="_blank" style="color:black;">User Register</a></li>
+
+                </ul>
+
+              </li>
+               <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                  Login
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:transparent;">
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/myapp/log/" target="_blank" style="color:black;">Shop Login</a></li>
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/myapp/ulogin/" target="_blank" style="color:black;">User Login</a></li>
+
+                </ul>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color:white;">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color:white;">Contact Us</a>
+              </li>
+            </ul>
+            <form class="d-flex" >
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="background-color:transparent;">
+              <button class="btn btn-outline-success" type="submit" style="background-color:greenyellow;">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav><br><br><br>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <label style="color:white;margin-left:20px; margin-bottom:20px;margin-top:35px;">Product name</label>
+  <input type="text" name="prdctname" style="background-color:transparent;border-color:white;color:white;"><br>
+    <label style="color:white;margin-left:20px;margin-bottom:20px;">Product price</label>
+    <input type="number" name="prdctprice"style="background-color:transparent;border-color:white;color:white;"><br>
+  <label style="color:white;margin-left:20px;margin-bottom:20px;">Upload image</label>
+  <input type="file" name="imgfile"style="background-color:transparent;border-color:white;color:white;"><br>
+  <input type="submit"style="background-color:transparent;border-color:white;color:white;">
     </form>
+    </div>
+
 </body>
 </html>

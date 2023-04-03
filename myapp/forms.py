@@ -42,3 +42,9 @@ class ufileform(forms.Form):
     prdctprice=forms.IntegerField()
     imgfile=forms.ImageField()
 
+class customercardform(forms.Form):
+    cardname=forms.CharField(max_length=30)
+    cardnumber=forms.CharField(max_length=30)
+    cardexpiry=forms.CharField(max_length=30)
+    code=forms.CharField(max_length=30)
+

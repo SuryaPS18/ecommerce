@@ -7,7 +7,7 @@ urlpatterns=[
     # path('userreg/',register),
     # path('shoplogin/',login),
     # path('userlogin/',userlogin),
-    path('homepage/',homepage),
+    # path('homepage/',homepage),
     path('index/',index),
     path('menu/',menu),
     path('reg/',reg),
@@ -22,7 +22,7 @@ urlpatterns=[
     path('verify/<auth_token>',verify), #string
     path('cart/<int:id>',addcart),
     path('upfile/',userpfile),
-    path('upload/',upload),
+    # path('upload/',upload),
     # path('display/',display),
     path('userprodis/',userprodisplay),
     path('cartdis/',cartdisplay),
@@ -34,6 +34,8 @@ urlpatterns=[
     path('cartbuy/<int:id>',cart_buy),
     path('cardpay/',card_pay),
     path('cartalready',cart_al_ready),
+    path('wishalready/',wish_al_ready),
+    path('wishcartalready/',wishcart_al_ready),
 
 
 
